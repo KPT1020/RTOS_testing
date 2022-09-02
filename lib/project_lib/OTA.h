@@ -85,6 +85,8 @@ void setupOTA(const char* nameprefix, const char* ssid, const char* password) {
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
+
+
 #if defined(ESP32_RTOS) && defined(ESP32)
   xTaskCreate(
     ota_handle,          /* Task function. */
@@ -95,3 +97,15 @@ void setupOTA(const char* nameprefix, const char* ssid, const char* password) {
     NULL);            /* Task handle. */
 #endif
 }
+
+void Task_IP(void *pvParameters){
+  for(;;){
+    (void)pvParameters;
+    Serial.println(WiFi.localIP());
+    vTaskDelay(500);
+  }
+}
+
+void show_IP(){
+   xTaskCreatePinnedToCore(Task_IP, "Task_IP", 2048, NULL, 2, &task1Handle, ARDUINO_RUNNING_CORE);
+  }

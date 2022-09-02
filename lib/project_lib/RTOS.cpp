@@ -1,5 +1,6 @@
 #include "RTOS.h"
 #include <Adafruit_ADS1X15.h>
+
 Adafruit_ADS1115 ads; 
 int16_t adc0, adc1, adc2, adc3;
 int count = 0;
@@ -45,6 +46,11 @@ void Task_Read(void *pvParameters){
     vTaskDelay(500);
   }
 }
+
+
+
+
+
 void begin_RTOS(){
   xTaskCreatePinnedToCore(Task_Hello, "Task_Hello", 4096, NULL, 2, &task1Handle, ARDUINO_RUNNING_CORE);
   xTaskCreatePinnedToCore(Task_Count, "Task_Count", 2048, NULL,2, NULL, ARDUINO_RUNNING_CORE);

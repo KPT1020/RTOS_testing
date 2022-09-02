@@ -21,13 +21,14 @@ void setup() {
 
   begin();
   begin_RTOS();
+  show_IP();
 
 }
 
 void loop() {
-  #ifdef defined(ESP32_RTOS) && defined(ESP32)
-#else // If you do not use FreeRTOS, you have to regulary call the handle method.
-  ArduinoOTA.handle();
-#endif
-  // put your main code here, to run repeatedly:
+//   #ifdef defined(ESP32_RTOS) && defined(ESP32)
+// #else // If you do not use FreeRTOS, you have to regulary call the handle method.
+//   ArduinoOTA.handle();
+// #endif
+//   // put your main code here, to run repeatedly:
 } 
